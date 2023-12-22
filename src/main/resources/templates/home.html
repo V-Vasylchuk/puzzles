@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle Game</title>
+  <link rel="stylesheet" th:href="@{/styles/navbar.css}">
+  <link rel="stylesheet" th:href="@{/styles/home.css}">
+</head>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+<br>
+
+<h2>Images:</h2>
+<table>
+  <thead>
+  <td> Play!</td>
+  <td> Download puzzles zip</td>
+  </thead>
+  <tbody>
+  <tr th:each="imageInfo: ${imageInfosList}">
+    <td>
+      <a th:href="${imageInfo.imageGameUrl}" th:text="${imageInfo.imageName}"></a>
+    </td>
+    <td>
+      <a th:href="${imageInfo.imageDownloadUrl}" th:text="${imageInfo.imageName}"> Download! </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

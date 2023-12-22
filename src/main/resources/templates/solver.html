@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle Solver</title>
+  <link rel="stylesheet" th:href="@{/styles/navbar.css}">
+  <link rel="stylesheet" th:href="@{/styles/puzzle-solver.css}">
+</head>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+<br>
+
+<div>
+  <h2>Upload your puzzle tiles:</h2>
+  <h4>JPG, up to 5MB combined</h4>
+  <h4>Please, don't rotate individual tiles)</h4>
+  <form method="post" th:action="@{/solver}" enctype="multipart/form-data">
+    <input required type="file" multiple name="files"><br>
+    <button type="submit">Solve!</button>
+  </form>
+</div>
+<br>
+
+<span th:text="${message}"></span><br>
+<img th:src="${solutionUrl}"/>
+
+</body>
+</html>

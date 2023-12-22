@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link rel="stylesheet" th:href="@{/styles/navbar.css}">
+    <link rel="stylesheet" th:href="@{/styles/game.css}">
+</head>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+<br>
+
+<form method="post" action="/game/swap">
+    <input required type="number" name="tile1Pos" placeholder="Tile1 №">
+    <input required type="number" name="tile2Pos" placeholder="Tile2 №">
+    <input type="submit" value="Swap">
+</form>
+<br>
+
+<form method="post" action="/game/rotate">
+    <input required type="number" name="tilePos" placeholder="Tile №">
+    <input type="submit" value="Rotate">
+</form>
+<br>
+
+<form method="post" action="/game/check">
+    <input type="submit" value="Check solution">
+</form>
+
+<p th:text="${message}"></p><br>
+<table>
+    <thead>
+    </thead>
+    <tbody>
+    <tr th:each="tileRow: ${tilesTable}">
+        <th:block th:each="puzzle: ${tileRow}">
+            <td>
+                <span class="tile">
+                    <img th:style="'transform:rotate(' + ${puzzle.rotation} + 'deg);'" th:src="${puzzle.imageUrl}"/>
+                    <span class="tile-number" th:text="${puzzle.getCurrentPosition}"></span>
+                </span>
+            </td>
+        </th:block>
+    </tr>
+    </tbody>
+</table>
+<br>
+
+<p th:if="${originalImg ne null}">Correct image: </p>
+<img th:if="${originalImg ne null}" width="500px" height="500px" th:src="${originalImg}"/>
+</body>
+</html>
